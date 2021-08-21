@@ -199,6 +199,7 @@ func main() {
 				i = 0
 				quizzes[quizChosen].Answers[classes[chosenClass].Students[chosenStudent].FullName] = studentAns
 				quizzes[quizChosen].Scores[classes[chosenClass].Students[chosenStudent].FullName] = float32(((3*correct)-wrong)/float64(quizzes[quizChosen].NumberOfQuestions*3)) * 100
+                fmt.Println(classes[chosenClass].Students[chosenStudent].FullName+"'s score is:",quizzes[quizChosen].Scores[classes[chosenClass].Students[chosenStudent].FullName])
 			}
 			if n3 == 2 {
 				j := 0
@@ -219,12 +220,16 @@ func main() {
 					j = 0
 					for j < len(classes[i].Students) {
 						if quizzes[quizChosen].Answers[classes[i].Students[j].FullName] != nil {
-							o := i
-							oo := j + 1
+							o := 0
+							oo := 0
 							for o < len(classes) {
 								oo = 0
 								for oo < len(classes[o].Students) {
-									if quizzes[quizChosen].Answers[classes[o].Students[oo].FullName] != nil && (o != i && oo != j) {
+									if o == i && oo == j {
+										oo++
+										continue
+									}
+									if quizzes[quizChosen].Answers[classes[o].Students[oo].FullName] != nil {
 										k := 0
 										wrongs := 0
 										sameWrongs := 0
